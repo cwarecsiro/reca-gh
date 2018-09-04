@@ -1,0 +1,28 @@
+Reading in 24 files
+no additional args supplied
+indicie TXx written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/TXx.tif
+
+Reading in 24 files
+no additional args supplied
+indicie TNx written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/TNx.tif
+
+Reading in 24 files
+no additional args supplied
+indicie TXn written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/TXn.tif
+
+Reading in 24 files
+no additional args supplied
+indicie TNn written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/TNn.tif
+
+Reading in 24 files
+no additional args supplied
+indicie FD written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/FD.tif
+
+Reading in 24 files
+no additional args supplied
+indicie R1 written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/R1.tif
+
+Reading in 24 files
+no additional args supplied
+indicie Rx1day written to /OSM/CBR/LW_BACKCAST/work/code/reca/climate_indicies/tests/Rx1day.tif
+

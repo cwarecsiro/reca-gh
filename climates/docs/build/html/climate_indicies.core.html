@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>climate_indicies.core module &mdash; climates 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> climates
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#climate-indicies-description">Climate indicies description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#calculating-climate-indicies">Calculating climate indicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html">climate_indicies package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.calc">climate_indicies.calc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.core">climate_indicies.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">climates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>climate_indicies.core module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/climate_indicies.core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-climate_indicies.core">
+<span id="climate-indicies-core-module"></span><h1>climate_indicies.core module<a class="headerlink" href="#module-climate_indicies.core" title="Permalink to this headline">¶</a></h1>
+<p>Routines to calculate a select number of climate indicies</p>
+<dl class="docutils">
+<dt>Indicies:</dt>
+<dd><ul class="first last simple">
+<li>TXx: monthly maximum value of daily maximim temperature</li>
+<li>TXn: monthly minimum value of daily maximim temperature</li>
+<li>TNx: monthly maximum value of daily minimum temperature</li>
+<li>TNn: monthly minimum value of daily minimum temperature</li>
+<li>R1: monthly proportion of days with rain</li>
+<li>Rx1day: monthly maximum of daily precipitation</li>
+<li>FD: monthly proportion of days with frost</li>
+</ul>
+</dd>
+</dl>
+<dl class="function">
+<dt id="climate_indicies.core.FD">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">FD</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#FD"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.FD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly proportion of frost days.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.R1">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">R1</code><span class="sig-paren">(</span><em>filepath</em>, <em>threshold=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#R1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.R1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly proportion of rain days.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.Rx1day">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">Rx1day</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#Rx1day"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.Rx1day" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly maximum 1-day precipitation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.TNn">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">TNn</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#TNn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.TNn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly minimum value of daily minimum temperature.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.TNx">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">TNx</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#TNx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.TNx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly maximum value of daily minimum temperature.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.TXn">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">TXn</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#TXn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.TXn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly mimimum value of daily maximim temperature.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.TXx">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">TXx</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#TXx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.TXx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monthly maximum value of daily maximim temperature.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.cel2kel">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">cel2kel</code><span class="sig-paren">(</span><em>arr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#cel2kel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.cel2kel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert masked array in Celsius to Kelvin.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climate_indicies.core.consecutive_days">
+<code class="descclassname">climate_indicies.core.</code><code class="descname">consecutive_days</code><span class="sig-paren">(</span><em>arr</em>, <em>threshold=1.0</em>, <em>logical_operation='&lt;'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/climate_indicies/core.html#consecutive_days"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climate_indicies.core.consecutive_days" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Calculate n consecutive days an operation is met for a threshold.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>arr</strong> (<em>ndarry</em>) – time needs to be the first dim</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number which to apply operation to</li>
+<li><strong>logical_operation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – operator which can be understood by operator mappings.
+Supported are &lt;, &lt;=, &gt;, &gt;=, and ==</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">2D array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Chris Ware.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

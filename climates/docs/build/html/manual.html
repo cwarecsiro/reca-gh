@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Manual &mdash; climates 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="climate_indicies package" href="climate_indicies.html" />
+    <link rel="prev" title="Climates documentation" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> climates
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#climate-indicies-description">Climate indicies description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculating-climate-indicies">Calculating climate indicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html">climate_indicies package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.calc">climate_indicies.calc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.core">climate_indicies.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">climates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>User Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/manual.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-manual">
+<h1>User Manual<a class="headerlink" href="#user-manual" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This package will (hopefully) collect different climate related
+processing routines.</p>
+<p>Presently, it only houses those to derive a few climate indicies with.</p>
+</div>
+<div class="section" id="climate-indicies-description">
+<h2>Climate indicies description<a class="headerlink" href="#climate-indicies-description" title="Permalink to this headline">¶</a></h2>
+<p>Routines to calculate modified versions of seven of the standard climate indicies are available.</p>
+<p>The main routine will calculate the monthly climatology of indicies over a period of years, and summarize this first by avergeing over months, and then by finding the chosen summary statistic over the 12 averaged months.
+For example, given a 30 year window between 1946-1975, the calculation for TXx goes as follows:</p>
+<ol class="arabic simple">
+<li>calculate monthly maximum of daily maximum temperature</li>
+<li>calculate the mean monthly maximum for each month between 1946-1975</li>
+<li>for each cell, find the maximum value.</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TXx:</th><td class="field-body"><p class="first">The maximum of the average monthly extreme maximum temperatures.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(TXx\)</span> is the maximum of average monthly maximum daily maximum temperatures, calculated for month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[TXx = max(\frac{\sum_{n=1}^{j}max(tmax\_daily_{kj})}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TXn:</th><td class="field-body"><p class="first">The minimum of the average monthly extreme maximum temperatures.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(TXn\)</span> is the minimum of average monthly maximum daily maximum temperatures, calculated for month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[TXn = min(\frac{\sum_{n=1}^{j}max(tmax\_daily_{kj})}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">TNx:</th><td class="field-body"><p class="first">The maximum of the average monthly extreme minimum temperatures.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(TNx\)</span> is the maximum of average monthly minimum daily minimum temperatures, calculated for month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[TNx = max(\frac{\sum_{n=1}^{j}min(tmin\_daily_{kj})}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TNn:</th><td class="field-body"><p class="first">The minimum of the average monthly extreme minimum temperatures.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(TNn\)</span> is the minimum of average monthly minimum daily minimum temperatures, calculated for month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[TNn = min(\frac{\sum_{n=1}^{j}min(tmin\_daily_{kj})}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">R1:</th><td class="field-body"><p class="first">The maximum of the average monthly count of days when precipitation &gt; 1mm.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(R1\)</span> is the maximum of the average monthly count of days where precipitation &gt; 1mm for for <span class="math notranslate nohighlight">\(d\)</span> days in month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[R1 = max(\frac{\sum_{n=1}^{j}(\sum_{n=1}^{d}(ppt\_daily_{dkj}))}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rx1day:</th><td class="field-body"><p class="first">The maximum of the average monthly extreme precipitation.</p>
+<dl class="docutils">
+<dt>Where <span class="math notranslate nohighlight">\(Rx1day\)</span> is the maximum of the average monthly maximum daily precipitation, calculated for month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[Rx1day = max(\frac{\sum_{n=1}^{j}max(ppt\_daily_{kj})}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">FD:</th><td class="field-body"><p class="first">The maximum of the average monthly count of days when temperatures were &lt; 0°C.</p>
+<dl class="last docutils">
+<dt>Where <span class="math notranslate nohighlight">\(FD\)</span> is the maximum of the average monthly count of days where daily minimum temperatures were &lt; 0°C for <span class="math notranslate nohighlight">\(d\)</span> days in month <span class="math notranslate nohighlight">\(k\)</span>, and year <span class="math notranslate nohighlight">\(j\)</span>, in <span class="math notranslate nohighlight">\(N\)</span> years.</dt>
+<dd><div class="first last math notranslate nohighlight">
+\[FD = max(\frac{\sum_{n=1}^{j}(\sum_{n=1}^{d}(tmin\_daily_{dkj}))}{N})\]</div>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="calculating-climate-indicies">
+<h2>Calculating climate indicies<a class="headerlink" href="#calculating-climate-indicies" title="Permalink to this headline">¶</a></h2>
+<p>basic use goes something like this from within python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">climates.climate_indicies</span> <span class="k">import</span> <span class="n">core</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TXx</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">TXx</span><span class="p">(</span><span class="n">monthly_tmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where monthly_tmin.nc might be loaded using the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">maclab.maclab</span> <span class="k">import</span> <span class="n">spatial</span> <span class="k">as</span> <span class="n">sp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">monthly_tmin_dataset</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Raster</span><span class="p">(</span><span class="n">monthly</span>\<span class="n">_tmin</span><span class="o">.</span><span class="n">nc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">monthly_tmin</span> <span class="o">=</span> <span class="n">monthly_tmin_dataset</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">array</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-line-interface">
+<h2>Command line interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h2>
+<p>climate_indicies is primarily set up as a command line tool, figuring
+it might be useful for others, and only to run as jobs submitted to a cluster.</p>
+<p>It can be used as follows (to get help)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> calc --help
+<span class="go">    usage: calc.py [-h] -f FILE_LIST -i INDICIE [INDICIE ...] [-a ARGS_DICT] [-k]</span>
+<span class="go">                            -d DST [-fn FILENAME] [-w] [-v]</span>
+
+<span class="go">    Derive climatologies of climate indices</span>
+
+<span class="go">    optional arguments:</span>
+<span class="go">    -h, --help            show this help message and exit</span>
+<span class="go">    -f FILE_LIST, --file-list FILE_LIST</span>
+<span class="go">                                                    path to txt file with list of nc files. &lt;Required&gt; Set</span>
+<span class="go">                                                    flag</span>
+<span class="go">    -i INDICIE [INDICIE ...], --indicie INDICIE [INDICIE ...]</span>
+<span class="go">                                                    list of indicies to calculate. To view, call</span>
+<span class="gp">                                                    $</span>calc_indicies.py --options&lt;Required&gt; Set flag
+<span class="go">    -a ARGS_DICT, --args-dict ARGS_DICT</span>
+<span class="go">                                                    additional args to supply to any indicie functions</span>
+<span class="go">                                                    called. These need to be passed as a dictionary.</span>
+<span class="go">                                                    &lt;Optional&gt; Set flag</span>
+<span class="go">    -k, --cel2kel         Convert input array from celsius to kelvin. &lt;Optional&gt;</span>
+<span class="go">                                                    Set flag</span>
+<span class="go">    -d DST, --dst DST     destination directory to write to.Will be created if</span>
+<span class="go">                                                    it does not exist &lt;Required&gt; Set flag</span>
+<span class="go">    -fn FILENAME, --filename FILENAME</span>
+<span class="go">                                                    String to add to add to the filename. By default, the</span>
+<span class="go">                                                    filename is given as &lt;indicie&gt;.tif. &lt;Optional&gt; Set</span>
+<span class="go">                                                    flag</span>
+<span class="go">    -w, --write-months    write monthly indicies to files. By default, the files</span>
+<span class="go">                                                    will use --file-list basenames as filenames and</span>
+<span class="go">                                                    --dst/monthly_&lt;indicie&gt; as the destination directory.</span>
+<span class="go">    -v, --verbose         print messages to console</span>
+
+<span class="go">    Note: indicies available are: TXx TNx TXn TNn FD R1 Rx1day</span>
+</pre></div>
+</div>
+<p>and to caclualte TXx, for example</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> calc -f filelist.txt -i TXx -d tifs -v
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="climate_indicies.html" class="btn btn-neutral float-right" title="climate_indicies package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Climates documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Chris Ware.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

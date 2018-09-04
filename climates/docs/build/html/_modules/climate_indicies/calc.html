@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>climate_indicies.calc &mdash; climates 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> climates
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../manual.html">User Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html#climate-indicies-description">Climate indicies description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html#calculating-climate-indicies">Calculating climate indicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../climate_indicies.html">climate_indicies package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../climate_indicies.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../climate_indicies.html#module-climate_indicies.calc">climate_indicies.calc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../climate_indicies.html#module-climate_indicies.core">climate_indicies.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../climate_indicies.html#module-climate_indicies">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">climates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>climate_indicies.calc</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for climate_indicies.calc</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generate a climatology of climate indicies</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/home/war42q/&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">maclab.maclab</span> <span class="k">import</span> <span class="n">spatial</span> <span class="k">as</span> <span class="n">sp</span>
+<span class="kn">from</span> <span class="nn">maclab.maclab</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">ut</span>
+<span class="kn">from</span> <span class="nn">maclab.maclab</span> <span class="k">import</span> <span class="n">slurm</span> <span class="k">as</span> <span class="n">sl</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">groupby</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">affine</span> <span class="k">import</span> <span class="n">Affine</span>
+<span class="kn">from</span> <span class="nn">rasterio.crs</span> <span class="k">import</span> <span class="n">CRS</span>
+<span class="kn">import</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">core</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<div class="viewcode-block" id="config"><a class="viewcode-back" href="../../climate_indicies.calc.html#climate_indicies.calc.config">[docs]</a><span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configure parsed arguments.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args: argparse args</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">	four items for input to routines</span>
+<span class="sd">        list of src nc files</span>
+<span class="sd">        list of indicies to calculate</span>
+<span class="sd">        destination dir to write to</span>
+<span class="sd">        keyword arguments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># txt file listing nc files</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)[</span><span class="s1">&#39;file_list&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">src</span><span class="p">]</span> 
+
+    <span class="c1"># indicie(s) as list</span>
+    <span class="n">indicies</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)[</span><span class="s1">&#39;indicie&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># dst dir</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)[</span><span class="s1">&#39;dst&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
+
+    <span class="c1"># check for additional args</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)[</span><span class="s1">&#39;args_dict&#39;</span><span class="p">]</span>
+    
+    <span class="k">return</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">indicies</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="valid_indicies"><a class="viewcode-back" href="../../climate_indicies.calc.html#climate_indicies.calc.valid_indicies">[docs]</a><span class="k">def</span> <span class="nf">valid_indicies</span><span class="p">(</span><span class="n">indicies</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check whether indicies are valid.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    indicies: list of strings</span>
+<span class="sd">    strings to relate to one of the available options</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># indicies available in calc_indicies </span>
+    <span class="n">indicie_opts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TXx&quot;</span><span class="p">,</span> <span class="s2">&quot;TNx&quot;</span><span class="p">,</span> <span class="s2">&quot;TXn&quot;</span><span class="p">,</span> <span class="s2">&quot;TNn&quot;</span><span class="p">,</span> <span class="s2">&quot;FD&quot;</span><span class="p">,</span> <span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;Rx1day&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indicies</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indicie_opts</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> is not a valid indicie. &#39;</span> <span class="o">+</span> \
+                  <span class="s1">&#39;Provided indicie must match one of </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span>\
+                  <span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">indicie_opts</span><span class="p">))</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+			
+<div class="viewcode-block" id="gen_meta"><a class="viewcode-back" href="../../climate_indicies.calc.html#climate_indicies.calc.gen_meta">[docs]</a><span class="k">def</span> <span class="nf">gen_meta</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate meta template.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Raster</span><span class="p">(</span><span class="n">src</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">meta</span>
+    <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;dtype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;float32&#39;</span>
+    <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;driver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;GTiff&#39;</span>
+    <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;nodata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span>
+
+    <span class="n">rm_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blockxsize&#39;</span><span class="p">,</span> <span class="s1">&#39;blockysize&#39;</span><span class="p">,</span> <span class="s1">&#39;tiled&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">rm_keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">meta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="parse_stat"><a class="viewcode-back" href="../../climate_indicies.calc.html#climate_indicies.calc.parse_stat">[docs]</a><span class="k">def</span> <span class="nf">parse_stat</span><span class="p">(</span><span class="n">indicie</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse matched numpy function.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">indicie</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;TXx&#39;</span><span class="p">,</span> <span class="s1">&#39;TNx&#39;</span><span class="p">,</span> <span class="s1">&#39;Rx1day&#39;</span><span class="p">,</span> <span class="s1">&#39;FD&#39;</span><span class="p">,</span> <span class="s1">&#39;R1&#39;</span><span class="p">]:</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">np</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">indicie</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;TNn&#39;</span><span class="p">,</span> <span class="s1">&#39;TXn&#39;</span><span class="p">]:</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">np</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="calc"><a class="viewcode-back" href="../../climate_indicies.calc.html#climate_indicies.calc.calc">[docs]</a><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Main function to calculate climatologies of indicies.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args: arparse list of args</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    GTiff files written to dst arg</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">src</span><span class="p">,</span> <span class="n">indicies</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">valid_indicies</span><span class="p">(</span><span class="n">indicies</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reading in </span><span class="si">{0}</span><span class="s1"> files&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">)))</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">gen_meta</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="n">nodata</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;nodata&#39;</span><span class="p">]</span>
+        
+    <span class="k">if</span> <span class="n">kwargs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no additional args supplied&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indicies</span><span class="p">:</span>
+        <span class="c1"># get matched function</span>
+        <span class="n">parse_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+		
+        <span class="c1"># dir for monthly grids if required</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">write_months</span><span class="p">:</span>
+            <span class="n">month_dst</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/monthly_</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">month_dst</span><span class="p">)</span>
+        
+        <span class="c1"># run</span>
+        <span class="n">monthly_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">output_f</span> <span class="o">=</span> <span class="n">parse_func</span><span class="p">(</span><span class="n">filepath</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output_f</span> <span class="o">=</span> <span class="n">parse_func</span><span class="p">(</span><span class="n">filepath</span> <span class="o">=</span> <span class="n">f</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">write_months</span><span class="p">:</span>
+                <span class="n">f_dst</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">_</span><span class="si">{2}</span><span class="s1">.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">month_dst</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+                <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_dst</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+                    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_f</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">monthly_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_f</span><span class="p">)</span>
+        
+        <span class="c1"># generate climatologies</span>
+        <span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jan&#39;</span><span class="p">,</span> <span class="s1">&#39;feb&#39;</span><span class="p">,</span> <span class="s1">&#39;mar&#39;</span><span class="p">,</span> <span class="s1">&#39;apr&#39;</span><span class="p">,</span> <span class="s1">&#39;may&#39;</span><span class="p">,</span> <span class="s1">&#39;jun&#39;</span><span class="p">,</span> \
+                 <span class="s1">&#39;jul&#39;</span><span class="p">,</span> <span class="s1">&#39;aug&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;oct&#39;</span><span class="p">,</span> <span class="s1">&#39;nov&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">]</span>
+        <span class="n">by_months</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+        <span class="c1"># cut outputs by months, assuming 12 months are given for each year</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_outputs</span><span class="p">)</span><span class="o">%</span><span class="mi">12</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;number of files supplied is not divisible into years: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                  <span class="s1">&#39;cannot calculate climatology&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="n">cuts</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_outputs</span><span class="p">),</span> <span class="mi">12</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+            <span class="n">by_months</span><span class="p">[</span><span class="n">months</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">monthly_outputs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">cuts</span><span class="p">[</span><span class="n">m</span><span class="p">]])</span>
+        <span class="c1"># calc monthly means across years</span>
+        <span class="n">yearly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">by_months</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">months</span><span class="p">])</span>
+        <span class="n">stat</span> <span class="o">=</span> <span class="n">parse_stat</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">output_i</span> <span class="o">=</span> <span class="n">stat</span><span class="p">(</span><span class="n">yearly</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+        
+        <span class="c1"># write</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="n">this_dst</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">_</span><span class="si">{2}</span><span class="s1">.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">this_dst</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">this_dst</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output_i</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;indicie </span><span class="si">{0}</span><span class="s1"> written to </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">this_dst</span><span class="p">))</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Derive climatologies of climate indices&#39;</span><span class="p">,</span>
+                                    <span class="n">add_help</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Note: indicies available are: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                    <span class="s2">&quot;TXx TNx TXn TNn FD R1 Rx1day&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span><span class="s1">&#39;--file-list&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;path to txt file with list of nc files. &lt;Required&gt; Set flag&#39;</span><span class="p">,</span>\
+                        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span><span class="s1">&#39;--indicie&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;list of indicies to calculate. To view, call &#39;</span> <span class="o">+</span>\
+                        <span class="s1">&#39;$calc_indicies.py --options&#39;</span>
+                        <span class="s1">&#39;&lt;Required&gt; Set flag&#39;</span><span class="p">,</span> \
+                        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--args-dict&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;additional args to supply to any indicie functions called. &#39;</span> <span class="o">+</span> \
+                        <span class="s1">&#39;These need to be passed as a dictionary. &#39;</span> <span class="o">+</span>
+                        <span class="s1">&#39;&lt;Optional&gt; Set flag&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="s1">&#39;--cel2kel&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Convert input array from celsius to kelvin. &#39;</span> <span class="o">+</span> \
+                        <span class="s1">&#39;&lt;Optional&gt; Set flag&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span><span class="s1">&#39;--dst&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;destination directory to write to.&#39;</span> <span class="o">+</span> \
+                        <span class="s1">&#39;Will be created if it does not exist &lt;Required&gt; Set flag&#39;</span><span class="p">,</span>\
+                        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-fn&#39;</span><span class="p">,</span> <span class="s1">&#39;--filename&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;String to add to add to the filename. By default, the filename &#39;</span> <span class="o">+</span> \
+                        <span class="s1">&#39;is given as &lt;indicie&gt;.tif. &lt;Optional&gt; Set flag&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-w&quot;</span><span class="p">,</span> <span class="s2">&quot;--write-months&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;write monthly indicies to files. &#39;</span> <span class="o">+</span> \
+					    <span class="s1">&#39;By default, the files will use --file-list basenames as filenames and &#39;</span> <span class="o">+</span> \
+					    <span class="s1">&#39;--dst/monthly_&lt;indicie&gt; as the destination directory.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;print messages to console&quot;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">calc</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Chris Ware.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
