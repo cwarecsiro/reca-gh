@@ -33,6 +33,7 @@ Package contents
    
    manual
    climate_indicies
+   project_workflow
 
 
 Indices and tables
