@@ -20,7 +20,7 @@ sys.path.append('/home/war42q/.local/lib/python3.6/site-packages/climates')
 
 # -- Project information -----------------------------------------------------
 
-project = 'climates'
+project = 'RECA'
 copyright = '2018, Chris Ware'
 author = 'Chris Ware'
 

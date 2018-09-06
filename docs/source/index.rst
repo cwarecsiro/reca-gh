@@ -3,34 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Climates documentation
-======================
-``climates`` is a package for climate related processing. 
-Includes routines for calculating climate indicies only at present.  
+RECA documentation
+==================
+``climate_indicies`` is a package for derviving climate indicies for use in RECA. 
   
-Requires
---------  
-maclab package to be installed  
+See :doc:`Project Workflow <../project_workflow>` for links to notebooks used to perform processing
 
-Quickstart
-----------
-
-Install:: 
-
-	pip --user git+ etc  
-
-
-Example::
-	
-	$module load python/3.6.1
-	$calc -f filelist.txt -i TXx -d tifs -v
-	
-
-Package contents
+Contents
 ----------------
 .. toctree::
    :maxdepth: 3
    
+   overview
+   installation
    manual
    climate_indicies
    project_workflow

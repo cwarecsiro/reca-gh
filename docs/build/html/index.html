@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Climates documentation &mdash; climates 0.0.1 documentation</title>
+  <title>RECA documentation &mdash; RECA 0.0.1 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="User Manual" href="manual.html" /> 
+    <link rel="next" title="Climate indicies overview" href="overview.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -47,7 +47,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> climates
+            <a href="#" class="icon icon-home"> RECA
           
 
           
@@ -78,14 +78,22 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="manual.html">User Manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="manual.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual.html#climate-indicies-description">Climate indicies description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Climate indicies overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#climate-indicies-description">Climate indicies description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requires">Requires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#quickstart">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> use</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#calculating-climate-indicies">Calculating climate indicies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html">climate_indicies package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html"><code class="docutils literal notranslate"><span class="pre">climate\_indicies</span></code> package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.calc">climate_indicies.calc module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.core">climate_indicies.core module</a></li>
@@ -111,7 +119,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">climates</a>
+          <a href="#">RECA</a>
         
       </nav>
 
@@ -142,7 +150,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Climates documentation</li>
+      <li>RECA documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,38 +169,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="climates-documentation">
-<h1>Climates documentation<a class="headerlink" href="#climates-documentation" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">climates</span></code> is a package for climate related processing.
-Includes routines for calculating climate indicies only at present.</p>
-<div class="section" id="requires">
-<h2>Requires<a class="headerlink" href="#requires" title="Permalink to this headline">¶</a></h2>
-<p>maclab package to be installed</p>
-</div>
-<div class="section" id="quickstart">
-<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
-<p>Install:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="o">--</span><span class="n">user</span> <span class="n">git</span><span class="o">+</span> <span class="n">etc</span>
-</pre></div>
-</div>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$module load python/3.6.1
-$calc -f filelist.txt -i TXx -d tifs -v
-</pre></div>
-</div>
-</div>
-<div class="section" id="package-contents">
-<h2>Package contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="reca-documentation">
+<h1>RECA documentation<a class="headerlink" href="#reca-documentation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> is a package for derviving climate indicies for use in RECA.</p>
+<p>See <a class="reference internal" href="project_workflow.html"><span class="doc">Project Workflow</span></a> for links to notebooks used to perform processing</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="manual.html">User Manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="manual.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual.html#climate-indicies-description">Climate indicies description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Climate indicies overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#climate-indicies-description">Climate indicies description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requires">Requires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#quickstart">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> use</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#calculating-climate-indicies">Calculating climate indicies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html">climate_indicies package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html"><code class="docutils literal notranslate"><span class="pre">climate\_indicies</span></code> package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.calc">climate_indicies.calc module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies.core">climate_indicies.core module</a></li>
@@ -225,7 +225,7 @@ $calc -f filelist.txt -i TXx -d tifs -v
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="manual.html" class="btn btn-neutral float-right" title="User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Climate indicies overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
