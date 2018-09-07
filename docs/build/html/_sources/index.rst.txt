@@ -18,6 +18,7 @@ Contents
    installation
    manual
    climate_indicies
+   metadata
    project_workflow
 
 
