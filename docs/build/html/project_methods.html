@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Project methods &mdash; RECA 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Project meta data" href="metadata.html" />
+    <link rel="prev" title="climate\_indicies package" href="climate_indicies.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RECA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Climate indicies overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#climate-indicies-description">Climate indicies description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requires">Requires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#quickstart">Quickstart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html"><code class="docutils literal notranslate"><span class="pre">climate_indicies</span></code> use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#calculating-climate-indicies">Calculating climate indicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climate_indicies.html"><code class="docutils literal notranslate"><span class="pre">climate\_indicies</span></code> package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#climate-indicies-calc-module">climate_indicies.calc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#climate-indicies-core-module">climate_indicies.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate_indicies.html#module-climate_indicies">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#developing-and-describing-climatologys-of-extremes-from-daily-climate-data">Developing and describing climatology’s of extremes from daily climate data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Project meta data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#file-naming-convention">File naming convention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#variable-codes">Variable codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#statistic-codes">Statistic codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#variable-descriptions">Variable descriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_workflow.html">Project workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project_workflow.html#data-download">Data download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_workflow.html#indicie-calculation">Indicie calculation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RECA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Project methods</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/project_methods.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="project-methods">
+<h1>Project methods<a class="headerlink" href="#project-methods" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="developing-and-describing-climatologys-of-extremes-from-daily-climate-data">
+<h2>Developing and describing climatology’s of extremes from daily climate data<a class="headerlink" href="#developing-and-describing-climatologys-of-extremes-from-daily-climate-data" title="Permalink to this headline">¶</a></h2>
+<p>Here we describe an approach to summarise long-term daily climate data to capture both average trends and extremes for a specified period. Climatology’s are traditionally described either by mean conditions for each month of the year over a number of years (e.g. total rainfall in July 1970-1980), and their extremes by annual anomalies (e.g. time series of hottest day for each year). These approaches follow a common approach, working from daily data and then summarising along two dimensions of time, within and between years, and in the case of mean values for a period, are identical. However, when extremes, such as maximum and minimum are considered, there is a divergence of information content.
+Two main types of climate data are recorded, those that accumulate (such as precipitation and evaporation: e.g. 20mm + 23mm= 43mm over two days) and those that don’t, such as temperature (20°C &amp; 23°C != 43°C over two days). The former are often accumulated over a period (e.g. Total Monthly or Annual Precipitation), whereas the latter are usually averaged (e.g. Mean Monthly or Annual Temperature). However, it is equally valid to summarise accumulating data as a mean daily value. This has three advantages: 1. the two data types are presented in a compatible form, 2. There is no need to consider the variable number of days in a month once the statistics have been calculated (consider total precipitation for Jan, 31 days and Feb, 28/29 days), 3. Mean for period, maximum daily and minimum daily measures are directly comparable.</p>
+<p><strong>Step 1: Summary of daily data into monthly data</strong>
+A first step in all cases is to calculate monthly statistics for all months in a period (e.g., 1981-1991). Four statistics are calculated; mean of daily data (MEAN), maximum of daily data (MAX), minimum of daily data (MIN) and range (RNG), as MAX-MIN, taking differing month lengths into account. These are all in units with a daily time stamp: evaporation per day (md-1), mean daily temperature (°C).</p>
+<a class="reference internal image-reference" href="_images/fig1.png"><img alt="_images/fig1.png" class="align-center" src="_images/fig1.png" style="width: 400px;" /></a>
+<p>Figure 1: Calculating monthly statistics.</p>
+<p>The resultant data comprise four matrices (month by year) of monthly statistics. Each of these can be summarised in two ways:</p>
+<p><strong>Method 1: “Climatology”</strong>
+This is the approach applied as standard for calculating average long term monthly statistics. For each of the matrices, statistics are first calculated for all years in the period for each month. Then the 12 monthly statistics are summarised to generate a statistic for the whole matrix.</p>
+<a class="reference internal image-reference" href="_images/fig2.png"><img alt="_images/fig2.png" class="align-center" src="_images/fig2.png" style="width: 800px;" /></a>
+<p><strong>Method 2: “Weather”</strong>
+Alernatively, annual summary statistics can be calculated first. This is the approach employed to examine inter-annual variation and anomalies. For each of the matrices, statistics (daily mean, minimum or maximum) are first calculated for all months in the period for year. Then the annual statistics are summarised to generate a statistic for the whole matrix.</p>
+<a class="reference internal image-reference" href="_images/fig3.png"><img alt="_images/fig3.png" class="align-center" src="_images/fig3.png" style="width: 800px;" /></a>
+<p>These two approaches will generate the same results for the mean calculation, but will present different summaries for the other variables. Consider an input matrix of the maximum (MAX) precipitation for all months calculated from daily data. If we then calculate the maximum (MAX) using the two methods, we will measure different things. Using method 1, we first calculate the maximum (MAX) of this matrix for each month, i.e. the highest recorded precipitation in each of the 12 months for each year. This could then be averaged (MEAN) within each of the months across all years, and then also (MEAN) across all the monthly averages, to obtain the annual mean of the maximum monthly precipitations for the period. Using method 2, we first calculate the maximum (MAX) for each year, i.e. the highest precipitation in each year. This could then be averaged (MEAN) across all years to obtain the mean of the annual maximum precipitations for the period. The second approach will average the wettest days in all years (a descriptor of the wettest part of the year), whereas the first approach will average the wettest days of each month, providing a description of the whole year.</p>
+<p>Kristen: If the annual mean is the goal, do they both end up the same?</p>
+<p>Kristen: Could you present as equations also?</p>
+<p>Kristen: H0: Applied across different merological variables (precipitation, maximum and minimum temperatures), approach 1 retains more of the inherent seasonal relationships among variables, and is more likely to have a stronger correlation with ecological responses.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="metadata.html" class="btn btn-neutral float-right" title="Project meta data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="climate_indicies.html" class="btn btn-neutral" title="climate\_indicies package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Chris Ware.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
