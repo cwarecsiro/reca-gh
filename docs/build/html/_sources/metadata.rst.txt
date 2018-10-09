@@ -37,4 +37,6 @@ Variable descriptions
    :file: /OSM/CBR/LW_BACKCAST/work/docs/metadata/variable_descriptions.csv
    :header-rows: 1
 
-
+AWAP, landform, and soil grids
+------------------------------
+See this pdf: https://github.com/cwarecsiro/reca-gh/blob/master/workflow/EnvironVarsNaming_v01.pdf
