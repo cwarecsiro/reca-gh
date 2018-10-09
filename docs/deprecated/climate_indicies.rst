@@ -1,4 +1,4 @@
-``climate\_indicies`` package
+`climate_indicies` package
 =============================
 
 Submodules

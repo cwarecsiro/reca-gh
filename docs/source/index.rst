@@ -14,18 +14,14 @@ Contents
 .. toctree::
    :maxdepth: 3
    
-   overview
-   installation
-   manual
-   climate_indicies
    project_methods
    metadata
    project_workflow
+   packages
 
 
-Indices and tables
-==================
+Code and packages
+-----------------
 
-* :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`
+
