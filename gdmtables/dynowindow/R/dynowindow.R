@@ -36,11 +36,10 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
     pairs_dst = pairs
   }
     
-  pyfile = paste(.libPaths(), 'dyno_climo_window/exec/pyper.py', sep = '/')
+  pyfile = paste(.libPaths(), 'dynowindow/exec/pyper.py', sep = '/')
   
   call = sprintf('%s %s -f %s -s %s -m %s -e %s -w %s -src %s', 
-                 exe, 
-                 pyfile, pairs_dst, mstat, cstat, variables, window)
+                 exe, pyfile, pairs_dst, mstat, cstat, variables, window)
   
   if(!is.null(npy_src)){
     call = sprintf('%s -src %s', call, npy_src)
