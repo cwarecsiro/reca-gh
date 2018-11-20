@@ -1,25 +1,26 @@
-from distutils.core import setup
-from distutils.extension import Extension
-from Cython.Build import cythonize
-import numpy
+from setuptools import setup
 
-ext_modules = [
-    Extension("gdmtables", ["/OSM/CBR/LW_BACKCAST/work/code/reca-gh/gdmtables/gdmtables/sample_sitepairs.pyx"],
-             include_dirs=[numpy.get_include()],
-             #extra_compile_args=['-qopenmp'],
-             #extra_link_args=['-qopenmp']),   
-             )]
-    #Extension(
-    #    "manhatten",
-    #    ["/home/war42q/SGAT/manhatten.pyx"],
-    #    include_dirs=[numpy.get_include()],
-    #    extra_compile_args=['-qopenmp'],
-    #    extra_link_args=['-qopenmp'],
-    #)
-    
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
-
-setup(
-    name='gdmtables',
-    ext_modules=cythonize(ext_modules),
+setup(name='geonpy',
+      version='0.0.1',
+      description='Geonpy class',
+      url='http://github.com/cwarecsiro/geonpy',
+      author='Chris Ware',
+      author_email='chris.ware@csiro.au',
+      license='NA',
+      packages=['geonpy'],
+      #test_suite='nose.collector',
+      #tests_require=['nose'],
+      zip_safe=False,
+      install_requires=[
+          'rasterio', 'feather-format',
+      ]
+      #entry_points={
+      #  'console_scripts': [
+      #      'calc = climate_indicies.calc.__main__:main'
+      #  ]
+    #},
 )
