@@ -251,16 +251,47 @@ def concat_rasters_to_geonpy(dst, input_filepaths):
     with open(dst, 'wb') as output:
         pickle.dump(sub_meta, output)
 
-def gen_multi_index_slice(arr, window):
+def gen_multi_index_slice(year_mon, window, st_year = None, st_mon = None):
     """
+    Create 2D array of time slice (monthly) indexes as a look-up input
+    
+    Parameters
+    ----------
+    year_mon: array, required
+        2D array with year and month as cols, both as integer.
+    window: int, required
+        length of climate window in years
+    st_year: int, optional
+        starting year of corresponding geonpy. Default 1990.
+    st_mon: int, optional
+        starting mon of corresponding geonpy. Default 1.
+    
+    Returns
+    -------
+    2D numpy array with rows as geographic locations, and cols as monthly idx
+    
     TODO
     ----
     This, and an upstream functon, are still is a bit loopy. Try and flatten these processes. 
-"""
-    z_idx = np.zeros((pts.shape[0], window)).astype(int)
-    z_idx[:, window-1] = rids
+    """
+    if not st_year:
+        st_year = 1900
+    if not st_mon:
+        st_mon = 1
+    
+    # convert year_mon to an int
+    year = year_mon[:, 0]
+    mon = year_mon[:, 1]
+    st_slice = (((year-st_year) * 12) + mon) - (st_mon -1)
+    
+    # output
+    z_idx = np.zeros((year_mon.shape[0], window)).astype(int)
+    
+    # loop over window
+    z_idx[:, window-1] = st_slice
     for i in range(window-1):
-        z_idx[:, i] = rids-(window-(i+1))
+        z_idx[:, i] = st_slice-(window-(i+1))
+    
     return(z_idx)
 
 def linidx_take(val_arr,z_indices):
@@ -271,3 +302,15 @@ def linidx_take(val_arr,z_indices):
     # Get linear indices and thus extract elements with np.take
     idx = nC*nR*z_indices + nR*np.arange(nR)[:,None] + np.arange(nC)
     return np.take(val_arr,idx) # Or val_arr.ravel()[idx]
+
+def calc_climatology_window(arr, mstat, cstat):
+    
+    cuts = arr.shape[1] / 12
+    cuts = np.arange(0, arr.shape[1], 12).tolist()
+    yearly = np.dstack([arr[:, i:i + 12] for i in cuts])
+    yearly_stat = mstat(yearly, axis = 1)
+    clim_stat = cstat(yearly_mean, axis = 1)
+    
+    # anything else?
+    
+    return(yearly_stat)
