@@ -1,0 +1,12 @@
+Package: dynowindow
+Version: 0.01
+Date: 2018-11-20
+Title: Climate windows for obspair gdm
+Description: Create dynamic climate windows for gdm pairs
+Author: war42q
+Maintainer: Chris Ware <chris.ware@csiro.au>
+SystemRequirements: python3
+Licence: errr
+Imports:
+                  feather,
+RoxygenNote: 6.0.1
