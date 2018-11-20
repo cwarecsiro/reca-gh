@@ -17,7 +17,9 @@ import tempfile
 import numpy as np
 from geonpy import *
 
-ROOT = '/OSM/CBR/LW_BACKCAST/work/DEV/geonpy'
+platforms = {'linux': '/OSM/CBR/LW_BACKCAST/work/DEV/geonpy', 
+             'windows': '//lw-osm-02-cdc/OSM_CBR_LW_BACKCAST_work/DEV/geonpy'}
+ROOT = platforms[sys.platform]
 
 def write_feather(arr, dst, variables):
     df = pd.DataFrame(arr)
