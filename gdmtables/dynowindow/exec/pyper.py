@@ -15,10 +15,7 @@ import os
 import re
 import tempfile
 import numpy as np
-#import geonpy
-import sys, os
-sys.path.append('//lw-osm-02-cdc/OSM_CBR_LW_BACKCAST_work/code/reca-gh/gdmtables/dyno_climo_window/exec')
-import testmod
+from geonpy import *
 
 ROOT = '/OSM/CBR/LW_BACKCAST/work/DEV/geonpy'
 
@@ -110,21 +107,17 @@ def main(args):
         for v in variables:
         
             var_v = Geonpy(v)
-            pairs[:, v_idx] = var_v.read_points(sites[i], dim_idx = slices[i])  
+            arr = var_v.read_points(sites[i], dim_idx = slices[i])  
+            pairs[:, v_idx] = calc_climatology_window(arr, mstat, cstat)  
             del var_v
             
             v_idx += 1
-        
+    
     output = np.hstack([pairs, output])
     write_feather(output, d, variables)
     
     # print(main) on run
     return(d)
-
-def main_test(args):
-    #pairs, variables, mstat, cstat, d = config(args)
-    testmod.foo()
-    return
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Coordinates from R to python - variablefy - pass back to R',
@@ -160,5 +153,5 @@ if __name__ == '__main__':
                         help="print messages to console")
 
     args = parser.parse_args()
-    print(main_test(args))
+    print(main(args))
     
