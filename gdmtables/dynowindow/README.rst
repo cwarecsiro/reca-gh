@@ -4,7 +4,7 @@ Install
 **R pkg**
 
   >>> library(devtools)
-  >>> install_github('cwarecsiro/reca-gh/gdmtables/pyper.git')
+  >>> install_github('cwarecsiro/reca-gh/gdmtables/dynowindow')
 
 
 **python pkg**
