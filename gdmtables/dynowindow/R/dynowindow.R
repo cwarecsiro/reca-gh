@@ -26,10 +26,10 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
     # data.frame like
   
     if(!is.null(pairs_dst)){
-      path_dst = tempfile(fileext = '.feather')
+      pairs_dst = tempfile(fileext = '.feather')
     }  
     
-    write_feather(pairs, path_dst)
+    write_feather(pairs, pairs_dst)
     
   } else {
     
