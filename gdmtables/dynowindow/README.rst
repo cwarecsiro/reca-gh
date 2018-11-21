@@ -13,7 +13,7 @@ Install
   >>> stdout = system(pip_call, intern = TRUE)
 Remove ``--user`` flag to install system wide  
 
-***
+****
 
 Ways to find a python exe on windows
 
