@@ -41,6 +41,8 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
     pyfile = gsub('/', '\\\\', pyfile)
   }
   
+  variables = paste(variables, collapse = ' ')
+  
   call = sprintf('%s %s -f %s -s %s -m %s -e %s -w %s', 
                  exe, pyfile, pairs_dst, mstat, cstat, variables, window)
   
