@@ -98,8 +98,8 @@ def main(args):
     # indexes
     t1 = pairs[:, 2:4]
     t2 = pairs[:, 6:8]
-    s1_slices = gen_multi_index_slice(t1, window)
-    s2_slices = gen_multi_index_slice(t2, window)
+    s1_slices = gen_multi_index_slice(t1, window, st_year = 1911)
+    s2_slices = gen_multi_index_slice(t2, window, st_year = 1911)
     slices = [s1_slices, s2_slices]
     
     # loop over sites and variables
