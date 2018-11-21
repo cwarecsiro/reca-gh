@@ -29,7 +29,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
       path_dst = tempfile(fileext = '.feather')
     }  
     
-    write_feather(pairs, pairs_dst)
+    write_feather(pairs, path_dst)
     
   } else {
     
