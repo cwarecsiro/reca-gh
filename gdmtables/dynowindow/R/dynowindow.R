@@ -37,6 +37,9 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
   }
     
   pyfile = paste(.libPaths(), 'dynowindow/exec/pyper.py', sep = '/')
+  if(Sys.info()['sysname'] == 'windows'){
+    pyfile = gsub('/', '\\\\', pyfile)
+  }
   
   call = sprintf('%s %s -f %s -s %s -m %s -e %s -w %s', 
                  exe, pyfile, pairs_dst, mstat, cstat, variables, window)
