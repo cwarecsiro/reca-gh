@@ -15,7 +15,7 @@ import os
 import re
 import tempfile
 import numpy as np
-from geonpy import *
+from geonpy.geonpy import *
 
 platforms = {'linux': '/OSM/CBR/LW_BACKCAST/work/DEV/geonpy', 
              'windows': '//lw-osm-02-cdc/OSM_CBR_LW_BACKCAST_work/DEV/geonpy',
