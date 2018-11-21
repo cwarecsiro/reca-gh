@@ -81,7 +81,7 @@ def config(args):
     # -d
     d = tempfile.NamedTemporaryFile(suffix='.feather').name   
     
-    return(pairs, variables, mstat, cstat, d)
+    return(pairs, variables, mstat, cstat, window, d)
     
     
 def main(args):

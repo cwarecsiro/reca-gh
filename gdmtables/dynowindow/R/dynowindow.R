@@ -37,7 +37,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
   }
     
   pyfile = paste(.libPaths(), 'dynowindow/exec/pyper.py', sep = '/')
-  if(Sys.info()['sysname'] == 'windows'){
+  if(Sys.info()['sysname'] == 'Windows'){
     pyfile = gsub('/', '\\\\', pyfile)
   }
   
