@@ -8,9 +8,8 @@ Install
 
 
 **python pkg**
-
-  >>> url = 'git+https://github.com/cwarecsiro/reca-gh/gdmtables/geonpy.git'
-  >>> pip_call = sprintf('python pip install --user %s', url)
+  >>> url = 'git+https://github.com/cwarecsiro/geonpy.git'
+  >>> pip_call = sprintf('python -m pip install --user %s', url)
   >>> stdout = system(pip_call, intern = TRUE)
 Remove ``--user`` flag to install system wide  
 
@@ -25,3 +24,4 @@ Anaconda installation might be here:
 
 For future ease, optionally set python PATH variable:
   >>> shell('setx PATH "C:\\Users\\war42q\\AppData\\Local\\Continuum\\Anaconda3\\python.exe"')
+
