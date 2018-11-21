@@ -25,7 +25,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
   
     # data.frame like
   
-    if(!is.null(pairs_dst)){
+    if(is.null(pairs_dst)){
       pairs_dst = tempfile(fileext = '.feather')
     }  
     
