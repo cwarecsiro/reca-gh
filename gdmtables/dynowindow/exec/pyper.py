@@ -87,14 +87,17 @@ def config(args):
 def main(args):
     """Main function. """
     pairs, variables, mstat, cstat, window, d = config(args)
-    
+       
     # output container...
-    output = np.zeros((pairs.shape[0], len(variables))).astype('float32')
+    output = np.zeros((pairs.shape[0], (len(variables) *2))).astype('float32')
     
     # sites
     s1_sites = pairs[:, 0:2]
     s2_sites = pairs[:, 4:6]
     sites = [s1_sites, s2_sites]
+    
+    # window = years * months
+    window *= 12
     
     # indexes
     t1 = pairs[:, 2:4]
@@ -104,24 +107,31 @@ def main(args):
     slices = [s1_slices, s2_slices]
     
     # loop over sites and variables
+    v_idx = 0
     for s in range(2):
-        
-        v_idx = 0
+         
         for v in variables:
-        
+          
             var_v = Geonpy(v)
-            arr = var_v.read_points(sites[i], dim_idx = slices[i])  
-            pairs[:, v_idx] = calc_climatology_window(arr, mstat, cstat)  
+            arr = var_v.read_points(sites[s], dim_idx = slices[s])  
+            output[:, v_idx] = calc_climatology_window(arr, mstat, cstat)  
             del var_v
             
             v_idx += 1
     
-    output = np.hstack([pairs, output])
+    output = pd.DataFrame(np.hstack([pairs, output]))
+    var_names = [os.path.basename(i)[:-4] for i in variables]
+    v1 = ['{}_1'.format(i) for i in var_names]
+    v2 = ['{}_2'.format(i) for i in var_names]
+    pair_names = ['x_1', 'y_1', 'year_1', 'month_1', 
+                  'x_2', 'y_2', 'year_2', 'month_2']
+    output.columns = pair_names + v1 + v2
     write_feather(output, d, variables)
     
     # print(main) on run
     return(d)
-    
+
+"""
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Coordinates from R to python - variablefy - pass back to R',
                                     add_help=True,
@@ -157,4 +167,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     print(main(args))
-    
+"""
