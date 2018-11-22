@@ -131,7 +131,6 @@ def main(args):
     # print(main) on run
     return(d)
 
-"""
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Coordinates from R to python - variablefy - pass back to R',
                                     add_help=True,
@@ -167,4 +166,3 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     print(main(args))
-"""
