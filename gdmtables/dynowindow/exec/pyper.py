@@ -25,11 +25,11 @@ ROOT = platforms[sys.platform]
 
 def write_feather(arr, dst, variables):
     df = pd.DataFrame(arr)
-    varnames = [os.path.basename(i) for i in variables]
-    varnames = [i.split('.')[0] for i in varnames]
-    varnames = ['{}_1'.format(i) for i in varnames]
-    varnames = ['x_1', 'y_1', 'x_2', 'y_2'] + varnames + varnames
-    df.columns = varnames
+    varnames = [os.path.basename(i)[:-4] for i in variables]
+    v1 = ['{}_1'.format(i) for i in varnames]
+    v2 = ['{}_2'.format(i) for i in varnames]
+    df.columns = ['x_1', 'y_1', 'year_1', 'month_1', 
+                  'x_2', 'y_2', 'year_2', 'month_2'] + v1 + v2
     feather.write_dataframe(df, dst)
 
     
@@ -121,12 +121,6 @@ def main(args):
             v_idx += 1
     
     output = pd.DataFrame(np.hstack([pairs, output]))
-    var_names = [os.path.basename(i)[:-4] for i in variables]
-    v1 = ['{}_1'.format(i) for i in var_names]
-    v2 = ['{}_2'.format(i) for i in var_names]
-    pair_names = ['x_1', 'y_1', 'year_1', 'month_1', 
-                  'x_2', 'y_2', 'year_2', 'month_2']
-    output.columns = pair_names + v1 + v2
     write_feather(output, d, variables)
     
     # print(main) on run
