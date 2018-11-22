@@ -76,7 +76,7 @@ def config(args):
     mstat = getattr(np, stat)
     
     # -w 
-    window = vars(args)['window']
+    window = int(vars(args)['window'])
     
     # -d
     d = tempfile.NamedTemporaryFile(suffix='.feather').name   
