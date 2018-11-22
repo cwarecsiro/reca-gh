@@ -15,6 +15,7 @@ import os
 import re
 import tempfile
 import numpy as np
+import pandas as pd
 from geonpy.geonpy import *
 
 platforms = {'linux': '/OSM/CBR/LW_BACKCAST/work/DEV/geonpy', 
