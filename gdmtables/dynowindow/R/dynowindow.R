@@ -11,8 +11,9 @@
 #' 
 #'@importFrom feather write_feather read_feather
 #'@export
+#'
 gen_windows = function(pairs, variables, mstat, cstat, window, 
-                       pairs_dst = NULL, npy_src = NULL){
+                       pairs_dst = NULL, npy_src = NULL, start_year = 1911){
   
   if(!exists('exe')){
     stop(sprintf('%s %s', 
@@ -29,6 +30,17 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
       pairs_dst = tempfile(fileext = '.feather')
     }  
     
+    pairs_class = all(sapply(df, class) == 'numeric')
+    if(!pairs_class)  pairs = sapply(df, as.numeric)
+    
+    min_year = c(pairs[, 3], pairs[, 7])
+    if ((min_year - window) < start_year)){
+      
+      # 
+      stop(sprintf('Found year: %s. Cannot build climate windows for period before %s', 
+                      min_year, start_year))
+      
+    }
     write_feather(pairs, pairs_dst)
     
   } else {
@@ -60,7 +72,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
   )
   
   if(!length(grep('data.frame', class(output)))){
-    stop(sprintf('Could not read %s', output_fp))
+    stop(sprintf('Could not read output file. Error: %s', output_fp))
   
   } else {
     
