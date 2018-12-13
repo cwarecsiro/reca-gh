@@ -34,7 +34,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
     if(!pairs_class)  pairs = sapply(df, as.numeric)
     
     min_year = c(pairs[, 3], pairs[, 7])
-    if ((min_year - window) < start_year)){
+    if ((min_year - window) < start_year){
       
       # 
       stop(sprintf('Found year: %s. Cannot build climate windows for period before %s', 
