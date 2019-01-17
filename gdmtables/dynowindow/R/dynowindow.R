@@ -31,7 +31,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
     
     col_class = rep(c('numeric', 'numeric', 'integer', 'integer'), 2)
     for (c in 1:8){
-      class(pairs[, i]) = col_class[i]
+      class(pairs[, c]) = col_class[c]
     }
     
     min_year = min(c(pairs[, 3], pairs[, 7]))
