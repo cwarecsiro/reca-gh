@@ -58,7 +58,7 @@ gen_windows = function(pairs, variables, mstat, cstat, window,
   variables = paste(variables, collapse = ' ')
   
   call = sprintf('%s "%s" -f %s -s %s -m %s -e %s -w %s', 
-                 exe, pyfile, pairs_dst, mstat, cstat, variables, window)
+                 exe, pyfile, pairs_dst, cstat, mstat, variables, window)
   
   if(!is.null(npy_src)){
     call = sprintf('%s -src %s', call, npy_src)
